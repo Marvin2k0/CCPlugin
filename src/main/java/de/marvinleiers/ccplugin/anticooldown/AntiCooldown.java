@@ -1,5 +1,6 @@
-package de.marvinleiers.ccplugin;
+package de.marvinleiers.ccplugin.anticooldown;
 
+import de.marvinleiers.ccplugin.CCPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;

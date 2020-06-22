@@ -10,3 +10,5 @@ commands:
     permission: cc.cc
   cctp:
     permission: cc.tp
+  ccpoints:
+    permission: cc.points

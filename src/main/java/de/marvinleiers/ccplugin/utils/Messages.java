@@ -22,6 +22,9 @@ public class Messages
         config.addDefault("only-players", "&cThis command is only for players!");
         config.addDefault("created", "&7Island successfully created!");
         config.addDefault("welcome-home", "&7You are now on your island!");
+        config.addDefault("null-item", "&cThis item is not valid!");
+        config.addDefault("num-error", "&cPlease enter numbers only!");
+        config.addDefault("new-block-value", "&7Block &e%block% &7has now the value &e%value%");
 
         plugin.saveConfig();
     }

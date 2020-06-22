@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 
 public class MainCommand implements CommandExecutor
 {
+
     private CCPlugin plugin = CCPlugin.plugin;
 
     @Override
@@ -29,7 +30,9 @@ public class MainCommand implements CommandExecutor
 
         if (args.length == 0)
         {
-            //TODO: send help
+            player.sendMessage("§6/cc create - Create an island if you don't own one");
+            player.sendMessage("§6/cc startraid - Start a raid");
+            player.sendMessage("§6/cc stopraid - Leave the raid");
             return true;
         }
 
@@ -54,14 +57,11 @@ public class MainCommand implements CommandExecutor
 
                 player.sendMessage(Messages.get("created"));
 
-                Locations.setLocation("next-island", loc.clone().add(5000, 0, 5000));
+                Locations.setLocation("next-island", loc.clone().add(CCPlugin.BORDER, 0, CCPlugin.BORDER));
             }
             else
             {
-                player.teleport(new Location(CCPlugin.getWorld(), user.getConfig().getDouble("island.x"),
-                        user.getConfig().getDouble("island.y"), user.getConfig().getDouble("island.z"),
-                        player.getLocation().getYaw(), player.getLocation().getPitch()));
-
+                player.teleport(user.getIsland());
                 player.sendMessage(Messages.get("welcome-home"));
             }
         }

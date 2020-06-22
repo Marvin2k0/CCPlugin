@@ -1,6 +1,7 @@
 package de.marvinleiers.ccplugin.user;
 
 import de.marvinleiers.ccplugin.CCPlugin;
+import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -15,6 +16,7 @@ public class User
     private File file;
     private FileConfiguration config;
     private Player player;
+    private int points;
 
     public User(Player player)
     {
@@ -22,11 +24,40 @@ public class User
         this.file = new File(plugin.getDataFolder().getPath() + "/users/" + player.getUniqueId().toString() + ".yml");
         this.config = YamlConfiguration.loadConfiguration(file);
         this.saveConfig();
+
+        this.points = 0;
+
+        if (config.isSet("points"))
+            this.points = config.getInt("points");
+    }
+
+    public void addPoints(int points)
+    {
+        this.points += points;
+        this.config.set("points", points);
+        this.saveConfig();
+    }
+
+    public int getPoints()
+    {
+        return this.points;
     }
 
     public boolean hasIsland()
     {
         return config.isSet("island");
+    }
+
+    public Location getIsland()
+    {
+        if (hasIsland())
+        {
+            return new Location(CCPlugin.getWorld(), getConfig().getDouble("island.x"),
+                    getConfig().getDouble("island.y"), getConfig().getDouble("island.z"),
+                    player.getLocation().getYaw(), player.getLocation().getPitch());
+        }
+
+        return null;
     }
 
     public FileConfiguration getConfig()
@@ -40,7 +71,9 @@ public class User
         {
             config.save(file);
         }
-        catch (IOException ignored) {}
+        catch (IOException ignored)
+        {
+        }
     }
 
     public Player getPlayer()
