@@ -34,7 +34,8 @@ public class User
     public void addPoints(int points)
     {
         this.points += points;
-        this.config.set("points", points);
+
+        this.config.set("points", this.points);
         this.saveConfig();
     }
 
