@@ -1,0 +1,12 @@
+name: CCPlugin
+version: ${project.version}
+main: de.marvinleiers.ccplugin.CCPlugin
+api-version: 1.15
+authors: [Marvin2k0]
+description: Plugin like Clash of Clans - by Marvin2k0
+website: www.marvinleiers.de
+commands:
+  cc:
+    permission: cc.cc
+  cctp:
+    permission: cc.tp
